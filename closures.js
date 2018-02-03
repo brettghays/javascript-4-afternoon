@@ -13,22 +13,22 @@ function outer() {
   var name = 'Tyler';
   return function() {
     return 'The original name was ' + name;
-  };
+  }
 }
-// Do not edit the code above.
-  
-/* 
-  Above you're given a function that returns another function which has a closure over the name variable.
-  Invoke outer saving the return value into another variable called 'inner'.
-*/
-  
+
+/****** INSTRUCTIONS PROBLEM 1 ******/
+/* Above you're given a function that returns another function which has a
+closure over the name variable. Invoke outer saving the return value into
+another variable called 'inner'. */
+
 // Code Here
 
-
+let inner = outer();
 
 //Once you do that, invoke inner.
 
 //Code Here
+inner("Brett");
 
 
 
@@ -39,19 +39,18 @@ function callFriend(name) {
   function dial(number) {
     return 'Calling ' + name + ' at ' + number
   }
-  return dial;
+  return dial
 }
-// Do not edit the code above.
 
-/*
-  Above you're given a callFriend function that returns the dial function.
-  Store the result of invoking callFriend in a variable named callJake.
-  
-  When callJake is invoked with '435-555-9248', it returns 'Calling Jake at 435-555-9248' 
-  (HINT: You will need to pass in arguments to both function invocations)
-*/
+/****** INSTRUCTIONS PROBLEM 2 ******/
+/* Above you're given a callFriend function that returns the dial function.
+Create a callJake function that when invoked with '435-555-9248' returns 'Calling Jake at 435-555-9248'
+in your console. */
 
-//Code Here
+  //Code Here
+
+  let callJake = callFriend('Jake');
+  callJake('435-555-9248')
 
 
 
@@ -63,14 +62,23 @@ function callFriend(name) {
 
 //Code Here
 
+let makeCounter = () => {
+  let counter = 0;
+  let increment = () => {
+    counter ++;
+    console.log(counter)
+    return counter
+  }
+  return increment;
+}
 
 
 //Uncomment this once you make your function
-//   var count = makeCounter();
-//   count(); // 1
-//   count(); // 2
-//   count(); // 3
-//   count(); // 4
+  var count = makeCounter();
+  count(); // 1
+  count(); // 2
+  count(); // 3
+  count(); // 4
 
 
 
@@ -87,11 +95,23 @@ function callFriend(name) {
 
 function counterFactory(value) {
   // Code here.
+  let inc = () => {
+    value++;
+    return value;
+  };
+
+  let dec = () => {
+    value--;
+    return value;
+  }
+
 
   return {
-
-  };
+    inc: inc,
+    dec: dec
+  }
 }
+
 
 counter = counterFactory(10);
 // counter.inc() // 11
@@ -109,17 +129,22 @@ counter = counterFactory(10);
   (Hint: don't forget to have a space between the firstname and lastname and a period at the end of the sentence.)
 */
 
-function motivation( firstname, lastname ) {
-  var welcomeText = "You're doing awesome, keep it up";
+function motivation(firstname, lastname) {
+
+  var welcomeText = 'You\'re doing awesome, keep it up ';
 
   // code message function here.
+  let message = () => {
+    return welcomeText + firstname + " " + lastname + "."
+  }
 
-  //Uncommment this to return the value of your message function
-  //return message;
+
+  //Uncommment this to return the value of your invoked message function
+  return message();
+
 }
 
-var greeting = motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
-
+motivation('Billy', 'Bob'); // 'You're doing awesome keep it up Billy Bob.
 
 
 ////////// PROBLEM 6 //////////
@@ -144,8 +169,12 @@ var module = (function() {
   // outside our lexical scope
   return {
     // Code here.
+    publicMethod: privateMethod
   };
+
 })();
+
+module.publicMethod();
 
 
 
@@ -188,9 +217,10 @@ function secretNumber() {
 
 function timeOutCounter() {
   for (var i = 0; i <= 5; i++) {
-    setTimeout(function() {
-      console.log(i);
-    }, i * 1000);
+      let index = i
+      setTimeout(function() {
+        console.log(index)
+    }, i * 1000)
   }
 }
 timeOutCounter();
